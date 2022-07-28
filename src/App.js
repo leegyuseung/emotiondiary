@@ -37,10 +37,44 @@ const reducer = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
-function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+// 초기 기본 dummyData
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의일기 1번",
+    date: 1659014730749,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘의일기 2번",
+    date: 1659014730755,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘의일기 3번",
+    date: 1659014730759,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘의일기 4번",
+    date: 1659014730763,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: "오늘의일기 5번",
+    date: 1659014730770,
+  },
+];
 
+function App() {
+  const [data, dispatch] = useReducer(reducer, dummyData);
   const dataId = useRef(0);
+
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
@@ -54,10 +88,12 @@ function App() {
     });
     dataId.current += 1;
   };
+
   //REMOVE
   const onRemove = (targetId) => {
     dispatch({ type: "REMOVE", targetId });
   };
+
   //EDIT
   const onEdit = (targetId, date, content, emotion) => {
     dispatch({
