@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 import { getStringDate } from "../util/date";
@@ -14,9 +14,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
   //감정 선택 state
   const [emotion, setEmotion] = useState(3);
 
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   // input 날짜
   const [date, setDate] = useState(getStringDate(new Date()));
