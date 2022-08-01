@@ -15,6 +15,12 @@ const Home = () => {
   //headText 부분
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
+  // title 변경하기
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `감정 일기장`;
+  }, []);
+
   useEffect(() => {
     if (diaryList.length >= 1) {
       // 월의 시작
